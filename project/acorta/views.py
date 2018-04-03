@@ -31,12 +31,11 @@ def stick(request):
 		urls = URL.objects.all()
 		response = PRACTICE_NAME + form + "<ul>"
 		for url in urls:
-			response += "/" + str(url.num) + " --> " + url.url + "<br>"
+			response += "/" + str(url.id) + " --> " + url.url + "<br>"
 		response += "</ul>"
 		return HttpResponse(response) 
 	
 	elif request.method == 'POST':
-		length = len(URL.objects.all())
 		
 		# I search if the URL is in the POST body
 		p = request.POST
@@ -54,12 +53,12 @@ def stick(request):
 			try:
 				url = URL.objects.get(url=url)
 			except URL.DoesNotExist:
-				new = URL(url = url, num = length)
+				new = URL(url = url)
 				new.save()
 			
 			links = ("<h2><font color='darkslategray'>Choose one:</font></h2>" +
-						"<h4>Your shortened URL: <a href='//" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).num) +
-						"'>http://" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).num) + "</a>"
+						"<h4>Your shortened URL: <a href='//" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) +
+						"'>http://" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) + "</a>"
 						"<br>Your original URL: <a href='" + str(url) + "'>" +
 						str(url) + "</a></h4>")		
 		
@@ -69,7 +68,7 @@ def stick(request):
 	
 def router(request, value):
 	try:	
-		url = URL.objects.get(num=value)
+		url = URL.objects.get(id=value)
 		print(url)
 		return HttpResponse(redirection(url))
 	except URL.DoesNotExist:
