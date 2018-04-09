@@ -57,8 +57,8 @@ def stick(request):
 				new.save()
 			
 			links = ("<h2><font color='darkslategray'>Choose one:</font></h2>" +
-						"<h4>Your shortened URL: <a href='//" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) +
-						"'>http://" + str(machine) + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) + "</a>"
+						"<h4>Your shortened URL: <a href='//" + machine + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) +
+						"'>http://" + machine + ":" + str(port) + "/" + str(URL.objects.get(url=url).id) + "</a>"
 						"<br>Your original URL: <a href='" + str(url) + "'>" +
 						str(url) + "</a></h4>")		
 		
