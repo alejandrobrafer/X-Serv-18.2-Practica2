@@ -16,7 +16,7 @@ def redirection(url):
 			"</head><body>Redirecting in 5 seconds ...</body></html>")
             
 form = """
-<h1><font color="darkslategray"><center><u>URL shortener ~ SARO 2018 2</u></center></font></h1>
+<h1><font color="darkslategray"><center><u>URL shortener 2 ~ SARO 2018</u></center></font></h1>
 <br>
 <form action="" method="POST"><input type="text" name="URL" value="" placeholder="Your original URL here"/>
 <input type="submit" value="SHORTEN URL"/><input type="reset" value="Reset"></form>
@@ -69,7 +69,6 @@ def stick(request):
 def router(request, value):
 	try:	
 		url = URL.objects.get(id=value)
-		print(url)
 		return HttpResponse(redirection(url))
 	except URL.DoesNotExist:
 		return HttpResponseNotFound(PRACTICE_NAME + "<h1><center>Page Not Found!</center></h1>")
